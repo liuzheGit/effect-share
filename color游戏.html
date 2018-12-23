@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.btn{display: inline-block;vertical-align: top; border: 1px solid pink;
+			/*边框算在宽度之内*/
+		 box-sizing: border-box;}
+		#d1{background-color: skyblue;width: 405px;height: 405px;}
+		
+	</style>
+</head>
+<body>
+<div id="d1"></div>
+<script type="text/javascript">
+	var cover = document.getElementById("d1");
+	//变量z改变颜色的接近程度
+	var z =255;
+	// 记录点击正确的div在divs里的下标
+	var index;
+	function circul(n) {
+		//每次点击后清除cover中的div
+		cover.innerHTML = null;
+		var random1 = Math.ceil(Math.random()*255);
+		var random2 = Math.floor(Math.random()*255);
+		for (var i = 1; i <=n*n; i++) {
+			var div = document.createElement("div");
+			// 给灯添加class
+			div.setAttribute("class","btn");
+			// 设置div的颜色
+			div.style.backgroundColor = 'rgb('+random1+','+random2+',200)';
+			// div的宽度和高度随数量的不同改变
+			div.style.width =( 405/n)+"px";
+			div.style.height = (405/n)+"px";
+			div.innerHTML = i;
+			// 给对象div添加属性 键 的值为i
+			div.index1 = i
+			// 将灯添加到cover中
+			cover.appendChild(div);	
+			//点击div添加事件
+			div.addEventListener("click",function (e) {
+				if (n<9) {
+					 n++;
+					 z-=5;
+					}else {
+						n =2;
+						z =255;	
+					}
+					//如果点击的div的下标是不同色块的下标,则正确进行
+					if (this.index1 == index+1) {
+						circul(n);
+					}else{
+						alert("错")
+					}	
+			}) 
+		}
+		//当所有div生成后,才可以遍历div,取随机位置设为不同颜色
+		var divs = cover.childNodes;
+		var random3 = Math.floor(Math.random()*n*n);
+		//及时记录randon3的值,方便上面判断点击的是否正确
+		index = random3;
+		// array.push(i);
+		divs[random3].style.backgroundColor = 'rgb('+random1+','+random2+','+z+')';
+
+
+	}
+	//设置初始状态的n为2
+	circul(2)
+	
+
+</script>
+</body>
+</SCRIPT>

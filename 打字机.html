@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>打字机</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#box{
+			width: 400px;
+			margin: 50px auto;
+			padding: 10px;
+			line-height: 1em;
+			color: cyan;
+			text-align: center;
+			font-size: 18px;
+			text-shadow: 2px 1px 1px red;
+			background-color: #000;
+		}
+	</style>
+	<script type="text/javascript">
+       var words =    "《烟花易冷》-周杰伦\n"+
+				　  "繁华声遁入空门 折煞了世人\n"+
+
+				　　"梦偏冷辗转一生 情债又几本\n"+
+
+				　　"如你默认 生死枯等\n"+
+
+				　　"枯等一圈又一圈的年轮\n"+
+
+				　　"浮屠塔 断了几层 断了谁的魂\n"+
+
+				　　"痛直奔一盏残灯 倾塌的山门\n"+
+
+				　　"容我再等 历史转身\n"+
+
+				　　"等酒香醇等你弹一曲古筝\n"+
+
+				　　"雨纷纷 旧故里草木深\n"+
+
+				　　"我听闻 你始终一个人\n"+
+
+				　　"斑驳的城门 盘踞着老树根\n"+
+
+				　　"石板上回荡的是 再等\n"+
+
+				　　"雨纷纷 旧故里草木深\n"+
+
+				　　"我听闻 你仍守着孤城\n"+
+
+				　　"城郊牧笛声 落在那座野村\n"+
+
+				　　"缘份落地生根是 我们\n"+
+
+				　　"听青春 迎来笑声 羡煞许多人\n"+
+
+				　　"那史册 温柔不肯 下笔都太狠\n"+
+
+				　　"烟花易冷 人事易分\n"+
+
+				　　"而你在问 我是否还 认真\n"+
+
+				　　"千年后 累世情深 还有谁在等\n"+
+
+				　　"而青史 岂能不真 魏书洛阳城\n"+
+
+				　　"如你在跟 前世过门\n"+
+
+				　　"跟着红尘 跟随我 浪迹一生\n"+
+
+				　　"雨纷纷 旧故里草木深\n"+
+
+				　　"我听闻 你始终一个人\n"+
+
+				　　"斑驳的城门 盘踞着老树根\n"+
+
+				　　"石板上回荡的是 再等\n"+
+
+				　　"雨纷纷 旧故里草木深\n"+
+
+				　　"我听闻 你仍守着孤城\n"+
+
+				　　"城郊牧笛声 落在那座野村\n"+
+
+				　　"缘份落地生根是 我们\n"+
+
+				　　"雨纷纷 旧故里草木深\n"+
+
+				　　"我听闻 你始终一个人\n"+
+
+				　　"斑驳的城门 盘踞着老树根\n"+
+
+				　　"石板上回荡的是 再等\n"+
+
+				　　"雨纷纷 雨纷纷 旧故里草木深\n"+
+
+				　　"我听闻 我听闻 你仍守着孤城\n"+
+
+				　　"城郊牧笛声 落在那座野村\n"+
+
+				　　"缘份落地生根是 我们\n"+
+
+				　　"缘份落地生根是 我们\n"+
+
+				　　"伽蓝寺听雨声盼 永恒";
+
+
+		function showWords(postion,msg) {
+			var index = 0;
+			var timer = null;
+			timer = setInterval(function () {
+				if (index > msg.length) {
+					clearInterval(timer);
+				}
+				else{
+					//substring()提取字符串中介于两个指定下标之间的字符。
+					postion.innerHTML = msg.substring(0,index);
+					index++;
+				}
+			},200);
+		}
+		   window.onload = function () {
+		   	var myBody = document.getElementById('box');
+		   	showWords(myBody,words);
+
+		   }
+	</script>
+</head>
+<body>
+  <pre id="box"></pre>
+</body>
+</html>

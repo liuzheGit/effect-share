@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>水面</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		@keyframes a{
+			from{transform:rotate(0deg);}
+		     to{transform: rotate(360deg)}
+		}
+		.wave{
+			width: 150px;
+			height: 150px;
+			border: 5px solid black;
+			border-radius: 50%;
+			position: relative;
+			/*overflow: hidden;*/
+			z-index: 1;
+			top: 100px;
+			left: 200px;
+			background-color: rgba(0,0,0,0.6);
+		}
+		.turn{
+			width: 300px;
+			height: 300px;
+			border-radius: 40%;
+			background-color: rgba(200,100,30,1);
+			position: absolute;
+			top: 150px;
+			margin-left: -100px;
+			animation: a 5s linear infinite;
+		}
+		.tips{
+			width: 150px;
+		/* 	border: 1px solid red; */
+			position: absolute;
+			font-size: 20px;
+			text-align: center;
+			line-height: 150px;
+			color:  #fff;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var topNum = 100;
+		 	var top = 150;
+	        var timer = setInterval(function() {
+	          $('.turn').css({"top":top +'px'});
+	          top-=18;
+	          // top-=15;
+	          topNum-=10;
+
+	          // top-=9;
+	          // // top-=15;
+	          // topNum-=5;
+	          var text = parseInt(100-topNum)+"%";
+	          $('.tips').text(text);
+	         if (topNum<=0) {
+	           clearInterval(timer);
+	         }
+	        },100)
+
+		});
+	</script>
+</head> 
+<body>
+<div class="wave">
+	<div class="turn"></div>
+	<div class="tips">1%</div>
+</div>
+</body>
+</html>
+
+
+
+

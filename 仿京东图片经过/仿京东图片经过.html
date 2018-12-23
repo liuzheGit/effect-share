@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>仿京东图片经过</title>
+<style>
+.wall .floor-cot {
+    overflow: visible;
+    position: relative;
+    width: 340px;
+    height: 430px;
+    margin: 0 auto;
+}
+.wall .floor-cot a {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    background:url(demo.jpg);
+    width:353px;
+    height:420px;
+    top:0;
+    left:0;
+    color:blue;
+}
+.wall .floor-cot a {
+   /* opacity: 1;*/
+    transition: all 5s ease 0s;
+}
+.wall .floor-cot:hover a {
+    opacity: 0.3;
+}
+.wall .floor-cot a:hover {
+    opacity: 1;
+}
+.wall .floor-cot a .left {
+    height: 0;
+    position: absolute;
+    transition: all 0.7s ease 0s;
+    left:0;
+    top:0;
+    width:5px;
+    background:#fcc400;
+    display:block;
+}
+.wall .floor-cot a .right {
+    height: 0;
+    position: absolute;
+    transition: all 0.7s ease 0s;
+    right:0;
+    bottom:0;
+    width:5px;
+    background:#fcc400;
+    display:block;
+}
+.wall .floor-cot a .top {
+    position: absolute;
+    transition: all 0.7s ease 0s;
+    width: 0;
+    left:0;
+    top:0;
+    height:5px;
+    background:#fcc400;
+    display:block;
+}
+.wall .floor-cot a .bottom {
+    position: absolute;
+    transition: all 0.7s ease 0s;
+    width: 0;
+    right:0;
+    bottom:0;
+    height:5px;
+    background:#fcc400;
+    display:block;
+}
+.wall .floor-cot a:hover .left {
+    height: 100%;
+}
+.wall .floor-cot a:hover .right {
+    height: 100%;
+}
+.wall .floor-cot a:hover .top {
+    width: 100%;
+}
+.wall .floor-cot a:hover .bottom {
+    width: 100%;
+}
+.wall .floor-cot a img {
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(1, 1);
+    transition: all 1.2s ease 0s;
+}
+.wall .floor-cot a:hover img {
+    opacity: 0;
+    transform: scale(1.2, 1.2);
+}
+</style>
+</head>
+<body>
+<div class="wall" style="overflow: hidden;">
+       <div class="floor-cot">
+           <a href="#">
+                <img alt="" src="demo.jpg">
+                <span class="left"></span>
+                <span class="top"></span>
+                <span class="right"></span>
+                <span class="bottom"></span>
+           </a>
+       </div>
+</div>
+</body>
+</html>

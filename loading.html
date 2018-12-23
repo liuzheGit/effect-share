@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css3 loading 动画</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			font-size: 0;
+		}
+		html,body {
+			width: 100%;
+			height: 100%;
+			background-color: #ed5565;
+		}
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+		#container {
+			width: 100%;
+			height: 80%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+		.row {
+			display: flex;
+			justify-content: space-around;
+		}
+/* 1.ball-grid-pulse */
+		.ball-grid-pulse>div {
+		    background-color: #fff;
+		    width: 20px;
+		    height: 20px;
+		    border-radius: 50%;
+		    margin: 5px;
+		    animation-fill-mode: both;
+		    display: inline-block;
+		    animation: ball-grid-pulse infinite;
+        }
+        @keyframes ball-grid-pulse {
+			0%  {
+			     transform: scale(1);
+	        }
+			50% {
+			     transform: scale(0.5);
+				 opacity: 0.5; 
+			}
+			100%{
+			      transform: scale(1);
+				  opacity: 0.9; 
+		    }
+	    }
+		.ball-grid-pulse {
+			width: 90px; 
+		}
+		.ball-grid-pulse>div:nth-child(1) {
+	        animation-delay: 0.06s;
+	        animation-duration: 0.72s; 
+	    }
+		.ball-grid-pulse > div:nth-child(2) {
+	        animation-delay: 0.25s;
+	        animation-duration: 1.02s; 
+	    }
+		.ball-grid-pulse > div:nth-child(3) {
+	        animation-delay: 0.17s;
+	        animation-duration: 1.28s; 
+	    }
+		.ball-grid-pulse > div:nth-child(4) {
+	        animation-delay: 0.48s;
+	        animation-duration: 1.42s; 
+	    }
+		.ball-grid-pulse > div:nth-child(5) {
+	        animation-delay: 0.31s;
+	        animation-duration: 1.45s; 
+	    }
+		.ball-grid-pulse > div:nth-child(6) {
+	        animation-delay: 0.03s;
+	        animation-duration: 1.18s; 
+	    }
+		.ball-grid-pulse > div:nth-child(7) {
+	        animation-delay: 0.46s;
+	        animation-duration: 0.87s; 
+	    }
+		.ball-grid-pulse > div:nth-child(8) {
+	        animation-delay: 0.78s;
+	        animation-duration: 1.45s; 
+	    }
+		.ball-grid-pulse > div:nth-child(9) {
+	        animation-delay: 0.45s;
+	        animation-duration: 1.06s; 
+	    }
+/* 2.ball-scale */
+	    @keyframes ball-scale {
+		    0%  {
+		        transform: scale(0); 
+		    }
+		    100%{
+		        transform: scale(1);
+			    opacity: 0; 
+		    } 
+		}
+		.ball-scale>div {
+			background-color: #fff;
+			width: 60px;
+			height: 60px;
+			border-radius: 100%;
+			animation: ball-scale 1s ease-in-out infinite;
+		}
+/* 3.ball-clip-rotate */
+        @keyframes rotate1 {
+		    0% { 
+		        transform: rotate(0deg) scale(1); 
+		    }
+		    50%{
+		        transform: rotate(180deg) scale(0.6); 
+		    }
+		    100%{
+		         transform: rotate(360deg) scale(1); 
+		        } 
+		}
+		.ball-clip-rotate > div {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;		          
+		  border: 2px solid #fff;
+		  border-bottom-color: transparent;
+		  animation: rotate1 1.2s linear infinite; 
+		}
+/* 4.ball-clip-rotate-pulse */
+        @keyframes rotate2 {
+			0% {
+			    transform: rotate(0deg) scale(1); 
+			}
+			50%{
+			    transform: rotate(-180deg) scale(0.6); 
+			}
+			100%{
+			     transform: rotate(-360deg) scale(1); 
+			} 
+		}
+		@keyframes scale2 {
+			33% {
+			     transform: scale(0.3); 
+			}
+			66% {
+			     transform: scale(0.7); 
+			}
+			100%{
+			     transform: scale(1); 
+			} 
+		}
+		.ball-clip-rotate-pulse {
+			position: relative;
+
+		}
+		.ball-clip-rotate-pulse>div {
+		    position: absolute;
+		    border-radius: 50%; 
+		}
+		.ball-clip-rotate-pulse>div:first-child {
+			background: #fff;
+			height: 30px;
+			width: 30px;
+			top: 20px;
+			left: 20px;
+            animation: scale2 1s infinite;
+		}
+		.ball-clip-rotate-pulse>div:last-child {
+			position: absolute;
+			border: 2px solid #fff;
+			width: 70px;
+			height: 70px;
+			background: transparent;
+			border: 2px solid;
+			border-color: #fff transparent #fff transparent;
+		    animation: rotate2 1s infinite;
+		}
+/* 5.square-spin */
+/* http://m.blog.csdn.net/article/details?id=39003061 */
+		@keyframes square-spin {
+			25% {
+			    transform: perspective(100px) rotateX(180deg) rotateY(0); 
+			}
+			50% {
+			    transform: perspective(100px) rotateX(180deg) rotateY(180deg); 
+			}
+			75% {
+			    transform: perspective(100px) rotateX(0) rotateY(180deg); 
+			}
+			100%{
+			    transform: perspective(100px) rotateX(0) rotateY(360deg); 
+			     /* transform: perspective(100px) rotateX(0) rotateY(0);  */
+		    }
+	    }
+	   /*  @keyframes square-spin {
+			25% {
+			    transform: rotateX(180deg) rotateY(0) perspective(100px); 
+			}
+			50% {
+			    transform: rotateX(180deg) rotateY(180deg) perspective(100px); 
+			}
+			75% {
+			    transform: rotateX(0) rotateY(180deg) perspective(100px); 
+			}
+			100%{
+			    transform: rotateX(0) rotateY(0) perspective(100px); 
+		    }
+	    } */
+		.square-spin>div {
+		  width: 60px;
+		  height: 60px;
+		  background: #fff;
+		  border: 1px solid red;
+		  animation: square-spin 3s 0s infinite; 
+		}
+/* 6.ball-clip-rotate-multiple */
+		@keyframes rotate3 {
+			0% {
+				transform: rotate(0deg) scale(1); 
+			}
+			50%{
+				transform: rotate(180deg) scale(0.6); 
+			}
+			100%{
+				transform: rotate(360deg) scale(1);
+			} 
+		}
+		.ball-clip-rotate-multiple {
+			position: relative;
+		}
+	    .ball-clip-rotate-multiple>div {
+		    position: absolute;
+		    border: 2px solid #fff;
+		    /* border-bottom-color: transparent;
+		    border-top-color: transparent; */
+		    border-color: transparent white;
+		    border-radius: 100%;
+		    height: 70px;
+		    width: 70px;
+		    animation: rotate3 1s ease-in-out infinite; 
+		}
+		.ball-clip-rotate-multiple>div:last-child {
+			display: inline-block;
+			top: 20px;
+			left: 20px;
+			width: 30px;
+			height: 30px;
+			border-color: #fff transparent;
+			animation-duration: 0.5s;
+			animation-direction: reverse; 
+		}
+/* 7.ball-pulse-rise */
+		@keyframes ball-pulse-rise-even {
+			0% {
+		        transform: scale(1.1); 
+		    }
+			25%{
+		        transform: translateY(-30px); 
+		    }
+			50%{
+			    transform: scale(0.4); 
+		    }
+			75%{
+		        transform: translateY(30px); 
+		    }
+			100%{
+			    transform: scale(1) translateY(0);
+		    } 
+		}
+		@keyframes ball-pulse-rise-odd {
+			0% {
+		        transform: scale(0.4); 
+		    }
+			25%{
+		        transform: translateY(30px); 
+		    }
+			50%{
+			    transform: scale(1.1); 
+		    }
+			75%{
+		        transform: translateY(-30px); 
+		    }
+			100%{
+			    transform: scale(0.75) translateY(0);
+		    } 
+		}
+		.ball-pulse-rise>div {
+			background-color: #fff;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			margin: 3px;
+			display: inline-block;
+			animation-fill-mode: both;
+			animation: 1.5s infinite;
+		 }
+	    .ball-pulse-rise>div:nth-child(2n) {
+            animation-name: ball-pulse-rise-even; 
+        }
+		.ball-pulse-rise > div:nth-child(2n+1) {
+		    animation-name: ball-pulse-rise-odd; 
+		}
+/* 8.ball-triangle-path 顺时针转*/
+		@keyframes ball-triangle-path-1 {
+			33% {
+			    transform: translate(50px, -100px); 
+			}
+			66% {
+			    transform: translate(100px, 0px); 
+			}
+			100%{
+			    transform: translate(0px, 0px); 
+		    } 
+		}
+		@keyframes ball-triangle-path-2 {
+			33% {
+			    transform: translate(50px, 100px); 
+			}
+			66% {
+			    transform: translate(-50px, 100px); 
+			}
+			100% {
+			    transform: translate(0px, 0px); 
+		    } 
+		}
+		@keyframes ball-triangle-path-3 {
+			33% {
+			    transform: translate(-100px, 0px); 
+			}
+			66% {
+			    transform: translate(-50px, -100px); 
+			}
+			100% {
+			    transform: translate(0px, 0px); 
+		    } 
+		}
+		.ball-triangle-path {
+			position: relative;
+			top: -50px;
+			left: -100px;
+		}
+		.ball-triangle-path>div:nth-child(1) {
+			animation: ball-triangle-path-1 2s ease-in-out infinite;
+	    }
+	    .ball-triangle-path>div:nth-child(2) {
+			animation: ball-triangle-path-2 2s ease-in-out infinite;
+	    }
+	    .ball-triangle-path>div:nth-child(3) {
+			animation: ball-triangle-path-3 2s ease-in-out infinite;
+	    }
+	    .ball-triangle-path>div {
+			animation-fill-mode: both;
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			border: 1px solid #fff; 
+		}
+		.ball-triangle-path>div:nth-of-type(1) {
+			top: 100px; 
+		}
+		.ball-triangle-path>div:nth-of-type(2) {
+			left: 50px; 
+		}
+		.ball-triangle-path>div:nth-of-type(3) {
+			top: 100px;
+			left: 100px; 
+		}
+/* 9.pacman */
+		@keyframes rotate_pacman_half_up {
+			0% {
+			    /* transform: rotate(270deg); */
+			    transform: rotate(-90deg);  
+			}
+			50%{
+			    /* transform: rotate(360deg);  */
+			    transform: rotate(0deg); 
+			}
+			100%{
+			    /* transform: rotate(270deg); */ 
+			    transform: rotate(-90deg);
+		    } 
+		}
+		@keyframes rotate_pacman_half_down {
+			0% {
+			    transform: rotate(90deg); 
+			}
+			50% {
+			    transform: rotate(0deg); 
+			}
+			100% {
+			    transform: rotate(90deg); 
+		    } 
+		}
+		@keyframes pacman-balls {
+			75% {
+				opacity: 0.7; 
+			}
+			100% {
+				transform: translate(0, -30px); 
+			} 
+		}
+		.pacman {
+			position: relative; 
+		}
+		.pacman>div:nth-child(3) {
+			animation: pacman-balls 1s 0.33s infinite linear; 
+		}
+		.pacman>div:nth-child(4) {
+			animation: pacman-balls 1s 0.66s infinite linear; 
+		}
+		.pacman>div:nth-child(5) {
+			animation: pacman-balls 1s 0.99s infinite linear; 
+		}
+		.pacman>div:nth-child(-n+2) {
+			width: 0px;
+			height: 0px;
+			border: 25px solid #fff;
+			border-radius: 25px;
+			border-right-color: transparent; 
+		}
+		.pacman>div:nth-child(1) {	
+			animation: rotate_pacman_half_up 0.5s infinite; 
+		}
+		.pacman>div:nth-child(2) {
+			animation: rotate_pacman_half_down 0.5s infinite;
+			margin-top: -50px; 
+		}
+		.pacman > div:nth-child(n+3) {
+			width: 10px;
+			height: 10px;
+			background-color: #fff;
+			border-radius: 50%;
+			position: absolute;
+			transform: translate(130px, -30px);
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="row">
+			<div class="ball-grid-pulse">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+	        </div>
+	        <div class="ball-scale">
+	          <div></div>
+	        </div>
+	         <div class="ball-clip-rotate">
+	          <div></div>
+	        </div>
+		</div>
+
+		<div class="row">
+			<div class="ball-clip-rotate-pulse">
+				<div></div>
+				<div></div>
+	        </div>
+	        <div class="square-spin">
+		        <div></div>
+	        </div>
+	         <div class="ball-clip-rotate-multiple">
+		        <div></div>
+		        <div></div>
+	        </div>
+		</div>
+
+		<div class="row">
+			<div class="ball-pulse-rise">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+	        </div>
+	        <div class="ball-triangle-path">
+				<div></div>
+				<div></div>
+				<div></div>
+	        </div>
+	        <div class="pacman">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+	        </div>
+		</div>
+			
+	</div>
+</body>
+</html>

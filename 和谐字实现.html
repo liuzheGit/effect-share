@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hexiezi</title>
+	<style>
+		#paragraph{font-size: 25px;color:#c81632;}
+	</style>
+</head>
+<body>
+	<textarea name="" id="paragraph" cols="50" rows="10">
+		我的救赎我的，不是我的也是我单纯的是不是，都是不要紧的对的错的大大的又有什么关系呢；时不时晓得小的的是不是的我的救赎我的，不是我的也是我单纯的是不是，都是不要紧的对的错的又有什么关系呢；时不时的是不是小的的我的救赎我的，不是我的也是我单纯的是不是，都是不要紧的大小是大小对的错的又有什么关系呢；时不时的是不是的我的救赎我的，不是我的也是我单纯的是不是，都是不要紧的对的错的又有什么关系呢；时不时的是不是的大的大的
+	</textarea><br>
+	<input type="button" value="发布" id="btn">
+
+	<script>
+		var paragraph = document.getElementById('paragraph');
+		var btn = document.getElementById('btn');
+		var reg = /大的|小的|大大的|大小/gi;
+		btn.onclick = function(){
+			paragraph.innerHTML = paragraph.innerHTML.replace(reg,function(x){
+				var a = '';
+				for(var i = 0; i < x.length; i++){
+					a += '*';
+				}
+				return a;
+
+			})
+		}
+	</script>
+</body>
+</html>

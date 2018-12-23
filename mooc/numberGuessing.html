@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>猜数字</title>
+	<link href="bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-app="app">
+<div class="container" ng-controller="GuessNumber">
+	<h2>猜数字 !</h2>
+	<p class="well lead">请猜出电脑生成的随机数，它的范围在1到1000之间.</p>
+	<label>请您出手: </label><input type="number" ng-model="userGuess"/>
+	<button ng-click="playGame()" class="btn btn-primary btn-sm">确定</button>
+	<button ng-click="newGame()" class="btn btn-warning btn-sm">重来</button>
+	<p>
+		<p ng-show="num<0" class="alert alert-warning">爷，您出价过高了！</p>
+		<p ng-show="num>0" class="alert alert-warning">爷，少了点，再加点，再加点.</p>
+		<p ng-show="num===0" class="alert alert-success">爷，还真让您说准了!.</p>
+	</p>
+	<p class="text-info">您猜过的次数是 : <span class="badge">{{timenum}}</span><p>
+</div>
+	<script src="angular.js"></script>
+	<script type="text/javascript">
+	angular.module('app',[])
+		.controller('GuessNumber', GuessNumber);
+		
+	function GuessNumber($scope) {
+			$scope.playGame = function () {
+				$scope.num = $scope.originalVal  - $scope.userGuess;
+				console.log($scope.num)
+				$scope.timenum = $scope.timenum + 1;
+			}
+			$scope.newGame=function() {
+				$scope.timenum = 0;
+				$scope.originalVal = Math.floor((Math.random() * 1000) + 1);
+				console.log($scope.originalVal)
+				$scope.userGuess = null;
+				$scope.num = null;
+			}
+			$scope.newGame();
+		}
+	</script>
+</body>
+</html>
+<!-- http://naotu.baidu.com/file/b7263e6200c09f5d6c0b597867265c58?token=eca3350d8ff4d0fb -->

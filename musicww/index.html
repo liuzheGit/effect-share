@@ -1,0 +1,92 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>简单音乐播放器</title>
+    <link rel="shortcut icon" href="img/ico/icon.ico" type="image/x-icon"/>
+    <link href="css/music.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/music.js"></script>
+    <style>
+        #wrap {
+            height: 100px;
+            background-color: black;
+            position: fixed;
+            bottom: 0;
+            line-height: 100px;
+        }
+
+        #play {
+            line-height: 100px;
+            left: 80px;
+        }
+
+        #input {
+            line-height: 100px;
+            left: 140px;
+            float: left;
+            position: absolute;
+            top: 30px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="Music">
+    <div id="main" class="MusicPlaySound">
+        <img class="MusicPlayBg" src="image/music/zsy.png"/>
+        <img class="MusicPlayProcess rotate" src="image/music/yyjd.png"/>
+        <div class="MusicPlayBox">
+            <h3 class="title">Personal Like </h3>
+            <p id="p" class="name">Aline Walker-Fade</p>
+            <div class="MusicPic">
+                <img class="MusicPicName PicNameRotate" src="image/music/zmm2.jpg"/>
+                <img class="MusicPicButton" src="image/music/pause.png"/>
+            </div>
+            <div id="font" class="Share icon">上一首</div>
+            <div id="next" class="Next icon">下一首</div>
+        </div>
+        <audio id="Audio" src="music/Alan Walker - Fade.mp3" autoplay></audio>
+    </div>
+
+    <div id="wrap">
+        <img id="play" class="MusicPicButton" src="image/music/pause.png"/>
+        <input id="input" type="range" min="0" max="" value="0">
+    </div>
+
+    <script>
+        window.onload = function () {
+            var audio = document.getElementById('Audio');
+            $('#wrap').width(window.innerWidth);
+            $('#input').width(window.innerWidth - 200);
+            $(window).resize(function () {
+                $('#wrap').width(window.innerWidth);
+                $('#input').width(window.innerWidth - 200);
+            });
+            //更改进度条的显示状态
+
+            setInterval(function () {
+
+                // Math.ceil(x) 返回一个大于或等于数 "x" 的最小整数。
+                var totalTime = Math.ceil(audio.duration);
+                $('#input').attr('max', totalTime);
+                audio.addEventListener("timeupdate", playTime);
+                function playTime() {
+                    var currentT = Math.ceil(audio.currentTime);
+                    $('#input').val(currentT);
+                }
+
+                $("#input").on("mousedown", function () {
+                    audio.removeEventListener("timeupdate", playTime);
+                    $(this).on("mouseup", function () {
+                        audio.addEventListener("timeupdate", playTime);
+                        var valPro = $(this).val();
+                        audio.currentTime = valPro;
+                    })
+                })
+            }, 300);
+        }
+    </script>
+</div>
+</body>
+</html>

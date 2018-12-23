@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<style>
+		*{margin:0;padding:0;}
+		div{
+			width:15px;
+			height:15px;
+			border-radius:50%;
+			position:absolute;
+			background:red;
+			display: none;
+		}
+		.show{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script>
+	var divs=document.getElementsByTagName("div");
+	document.onmousemove=function(e){
+		// var Event=ev||window.event;
+		var Event=e;
+		var mouseX=Event.clientX;//获取鼠标X轴坐标
+		var mouseY=Event.clientY;//获取鼠标Y轴坐标
+		var timer=null,v=0;
+		timer=setInterval(function(){
+			if(v>=divs.length){
+				v=0;
+				clearInterval(timer);
+			}
+			divs[v].style.left=mouseX+"px";
+			divs[v].style.top=mouseY+"px";
+			v++;
+		},100);
+	}
+	document.onmouseover=function(){
+		for(var i=0;i<divs.length;i++){
+			divs[i].className="show";
+		}
+	}
+	document.onmouseout=function(){
+		for(var i=0;i<divs.length;i++){
+			divs[i].className="";
+		}
+	}
+</script>
+</html>

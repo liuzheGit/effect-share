@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>水面上升</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.wave {
+			width: 200px;
+			height: 200px;
+			border: 3px solid black;
+			border-radius: 50%;
+			position: relative;
+			/* position: absolute; */
+			top: 100px;
+			left: 200px;
+			background-color: rgba(0, 0, 0, 0.5);
+			overflow: hidden;
+			z-index: 1;
+		}
+
+		.turn {
+			width: 400px;
+			height: 400px;
+			background-color: skyblue;
+			border-radius: 40%;
+			position: absolute;
+			top: 100%;
+			/* top: 200%; */
+			left: -100px;
+			animation: turn 5s linear infinite;
+		}
+		@keyframes turn{
+				from{transform: rotate(0deg);}
+				to{transform: rotate(360deg)}
+			}
+
+		.num {
+			width: 200px;
+			position: absolute;
+			top: 50px;
+			font-size: 30px;
+			color: red;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="wave">
+		<div class="turn"></div>
+		<div class="num">1%</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	var topNum = 100;
+	function odd () {
+		$('.turn').css({"top":topNum+"%"});
+		topNum -= 2.1;
+		// 注意中英文括号的不同
+		var text = parseInt(100 - topNum)+'%';	
+		$(".num").text(text);
+		if (topNum <=0) {
+			clearInterval(timer);
+		}
+	}
+	var timer = setInterval(odd,100);
+
+</script>
+
+
+

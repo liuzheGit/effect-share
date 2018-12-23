@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+
+ html {
+  background:linear-gradient(#fff 0,#000 80%);
+
+        height:100%
+       }
+
+
+    @keyframes rotate{
+        0%{
+            transform:rotateX(0deg) rotateY(0deg);
+        }
+        100%{
+            transform:rotateX(360deg) rotateY(360deg);
+        }
+    }
+
+   
+ 
+    .cube{
+        margin:180px auto;
+        width:200px;
+        height:200px;
+        position:relative;
+        transform-style:preserve-3d;
+        animation:rotate 10s infinite linear;
+     
+    }
+   div img{
+        width: 200px;
+        height: 200px;
+    }
+    span img{
+        width: 100px;
+        height: 100px;
+
+    }
+
+    .cube>div{
+        width:100%;
+        height:100%;
+        position:absolute;
+        background-color:#333;
+        opacity:1;
+        border:1px #fff solid;
+      /*   color:#fff; */
+       /*  font-size:36px;  
+        text-align:center;
+        line-height:200px; */
+        transition:transform  .2s ease-in;
+     
+    }
+   
+
+    .cube .out-front{
+        transform:translateZ(100px)
+    }
+    .cube .out-back{
+        transform:translateZ(-100px) rotateY(180deg)
+    }
+    .cube .out-left{
+        transform:rotateY(90deg) translateZ(100px)
+    }
+    .cube .out-right{
+        transform:rotateY(-90deg) translateZ(100px)
+    }
+    .cube .out-top{
+        transform:rotateX(90deg) translateZ(100px)
+    }
+    .cube .out-bottom{
+        transform:rotateX(-90deg) translateZ(100px)
+    }
+    .cube:hover .out-front{
+        transform:translateZ(200px)
+    }
+
+    .cube:hover .out-back{
+        transform:translateZ(-200px) rotateY(180deg) 
+
+    }
+    .cube:hover .out-left{
+        transform:rotateY(90deg) translateZ(200px)
+    }
+    .cube:hover .out-right{
+        transform:rotateY(-90deg) translateZ(200px)
+    }
+    .cube:hover .out-top{
+        transform:rotateX(90deg) translateZ(200px)
+    }
+    .cube:hover .out-bottom{
+        transform:rotateX(-90deg) translateZ(200px)
+    }
+    .cube>span{
+        display:block;
+        width:100px;
+        height:100px;
+        border:1px #000 solid;
+        background-color:#999;
+        position:absolute;
+        /*  transform-style:preserve-3d;
+       animation:rotate 5s infinite linear; */
+        top:50px;
+        left:50px
+    }
+    .cube .in-front{
+        transform:translateZ(50px)
+    }
+    .cube .in-back{
+        transform:translateZ(-50px) rotateY(180deg)
+    }
+    .cube .in-left{
+        transform:rotateY(90deg) translateZ(50px)
+    }
+    .cube .in-right{
+        transform:rotateY(-90deg)
+        translateZ(50px)
+    }
+    .cube .in-top{
+        transform:rotateX(90deg) translateZ(50px)
+    }
+    .cube .in-bottom{
+        transform:rotateX(-90deg) translateZ(50px)
+    }
+
+   
+   
+</style>
+<body>
+
+
+    <div class="cube">
+        <div class="out-front"><img src="3.jpg"></div>
+        <div class="out-back"><img src="3.jpg"></div>
+        <div class="out-left"><img src="3.jpg"></div>
+        <div class="out-right"><img src="3.jpg"></div>
+        <div class="out-top"><img src="3.jpg"></div>
+        <div class="out-bottom"><img src="3.jpg"></div>
+
+        <span class="in-front"><img src="2.jpg" ></span>
+        <span class="in-back"><img src="2.jpg" ></span>
+        <span class="in-left"><img src="2.jpg" ></span>
+        <span class="in-right"><img src="2.jpg" ></span>
+        <span class="in-top"><img src="2.jpg" ></span>
+        <span class="in-bottom"><img src="2.jpg" ></span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>百度抓取关键字</title>
+	<meta charset="utf-8">
+
+</head>
+<body>
+	<form method="" action="">
+		<input type="text" name="" value="" id="txt">
+		<input type="submit" value="搜索">
+		<ul id="list"></ul>	
+	</form>
+</body>
+
+<script type="text/javascript">
+
+	var txt = document.getElementById('txt');
+	var list = document.getElementById('list');
+	var script = null;
+
+	txt.onkeyup = function () {
+		if (script) {
+			//移除产生的script标签
+			document.body.removeChild(script);
+		}
+		script = document.createElement('script');
+		// 获取百度的数据库
+		var url = 'http://suggestion.baidu.com/su?cb=wenzi&wd='+ txt.value ;
+		// jsonp跨域请求数据
+		script.src = url;
+		document.body.appendChild(script);
+	}
+
+	function wenzi(sj) {
+		// 回调函数，循环插入数据
+		list.innerHTML = '';
+		for(var i = 0; i < sj.s.length; i++){
+			list.innerHTML += '<li>'+ sj.s[i] + '</li>';
+		}
+	}
+
+
+</script>
+</html>

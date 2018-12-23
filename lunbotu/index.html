@@ -1,0 +1,192 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片轮播</title>
+	<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#img-roller{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			position: relative;
+		}
+		.contorl-btn .left-btn,.contorl-btn .right-btn{
+			position: absolute;
+			width: 45px;
+			height: 45px;
+			top: 122px;
+			background:url(images/icons.png) no-repeat 0 0;
+			cursor: pointer;
+		}
+		.contorl-btn .left-btn{
+			left: 10px;
+		}
+		.contorl-btn .right-btn{
+			right: 10px;
+			background:url(images/icons.png) no-repeat 0 -45px;
+		}
+		.con-dot{
+			list-style: none;
+			position: absolute;
+			right: 27px;
+			bottom: 12px;
+		}
+		.con-dot li{
+			float: left;
+			width: 15px;
+			height: 15px;
+			margin-right: 8px;
+			background:url(images/icons.png) no-repeat -23px -125px;
+			cursor: pointer;
+		}
+		.con-dot li.small-dot{
+			background-position: -8px -125px;
+		}
+		.img-bulk{
+			-webkit-perspective:600px;
+		}
+		.img-bulk p{
+			position: absolute;
+			width: 140px;
+			height: 100px;
+			background-image:url(images/0.jpg);
+			font-size: 40px;
+		}
+		.img-bulk.fly p{
+			opacity: 0;
+		}
+		.img-bulk.fly p:nth-child(1){-webkit-transform:rotateX(30deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(2){-webkit-transform:rotateX(330deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(3){-webkit-transform:rotateX(3450deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(4){-webkit-transform:rotateX(-30deg) rotateY(-10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(5){-webkit-transform:rotateX(330deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(6){-webkit-transform:rotateX(40deg) rotateY(20deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(7){-webkit-transform:rotateX(340deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(8){-webkit-transform:rotateX(3450deg) rotateY(60deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(9){-webkit-transform:rotateX(230deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(10){-webkit-transform:rotateX(20deg) rotateY(20deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(11){-webkit-transform:rotateX(30deg) rotateY(10deg) translateZ(400px);}
+		.img-bulk.fly p:nth-child(12){-webkit-transform:rotateX(10deg) rotateY(10deg) translateZ(400px);}
+	</style>
+</head>
+<body>
+<!--图片轮播-->
+	<div id="img-roller">
+			<div class="img-bulk ">
+				<p></p><p></p><p></p><p></p><p></p><p></p>
+				<p></p><p></p><p></p><p></p><p></p><p></p>
+			</div>
+			<div class="now-img">
+				<img src="images/0.jpg"/>
+			</div>
+		<div class="contorl-btn">
+			<span class="left-btn"></span>
+			<span class="right-btn"></span>
+		</div>
+		<ul class="con-dot">
+			<li class="small-dot"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	//	parseInt(Math.random() * 100 + 200)
+	$(document).ready(function () {
+
+//定义一个当前图片变量
+			var nowimg = 0;
+//输出每个列表项的值,即所有的p元素.each() 方法规定为每个匹配元素规定运行的函数。
+			$(".img-bulk p").each(
+//获取每个p元素的坐标
+				function () {
+					var x = $(this).index() % 4 * 140;
+					var y = parseInt($(this).index() / 4) * 100;
+					$(this).css(
+						{
+							"left": x,
+							"top": y,
+							"background-position": (-x) + "px " + (-y) + "px"
+						}
+					);
+					console.log([x,y]);
+
+				}
+			);
+//为每个圆点添加点击事件,
+			$(".con-dot li").click(function() {
+				nowimg = $(this).index();
+				$(".con-dot li").removeClass("small-dot");
+				event.target.setAttribute('class', 'small-dot');
+				cut();
+			});
+//前后切图
+			$(".right-btn").click(
+				function () {
+					if (nowimg < 4) {
+						nowimg++;
+					} else {
+						nowimg = 0;
+					}
+					cut();
+				}
+			);
+			// console.log($('li')[nowimg]);
+			$(".left-btn").click(
+				function () {
+					if (nowimg > 0) {
+						nowimg--;
+					} else {
+						nowimg = 4;
+					}
+					cut();
+				}
+			);
+			function cut() {
+				//图片动画效果控制,all 1s ease 0s  所有属性都改变
+				// transition主要包含四个属性值：
+				// 执行变换的属性transition-property，
+				// 变换延续的时间transition-duration，
+				// 在延续的时间段内，变换的速率变化transition-timing-function，
+				// 变换延迟时间transition-delay
+				$(".img-bulk p").css("transition", "all 1s ease 0s");
+				$(".img-bulk").addClass("fly");
+				$(".now-img img").attr("src", "images/" + nowimg + ".jpg");
+				setTimeout(function () {
+					$(".img-bulk p").css("transition", "none");
+					//根据当前图片得到图片路径地址,
+					$(".img-bulk p").css("background-image", "url(images/" + nowimg + ".jpg)");
+					//我们准备下一张图
+					$(".img-bulk").removeClass("fly");
+				}, 1000);
+			}
+//定时切换,循环
+			function change() {
+				$(".right-btn").click();
+			}
+			var timer = setInterval(change, 3000);
+// 随时观测显示的是哪一个图片
+			function lili () {
+				$("li").removeClass("small-dot");
+				document.querySelectorAll('li')[nowimg].setAttribute('class', 'small-dot')
+			}
+			var timer1 = setInterval(lili, 30);
+// 鼠标移入移出事件
+			$('#img-roller').mouseleave(function () {
+				clearInterval(timer);
+				timer = setInterval(change, 3000);
+			})
+			$('#img-roller').mouseenter(function () {
+				clearInterval(timer);
+			})
+		}
+	);
+</script>
+</html>

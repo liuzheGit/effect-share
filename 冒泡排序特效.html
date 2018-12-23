@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>冒泡排列</title>
+		<style>
+			*{
+				margin:0;padding:0;
+				background-color: #000;
+			}
+			.box{
+				position:absolute;
+				width:10px;
+				height:10px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div><div class = "box"></div>
+	</body>
+</html>
+
+<script>
+	var oDiv = document.getElementsByClassName("box");			
+	var newArr = [];
+	var timer;
+	var flag = true;
+	document.onclick = function(){
+		if(flag == true){
+			randomPosition(oDiv);
+			randomColor(oDiv);
+		}				
+	}		
+	//随机生成div位置
+	function randomPosition(arr){
+		
+		var winWidth = window.document.body.clientWidth||document.documentElement.clientWidth;
+		console.log(winWidth)      // 625
+		var winHeight = window.document.body.clientHeight||document.documentElement.clientHeight;
+		console.log(winWidth/winHeight)    // 0.789
+		for(var i = 0 ; i < arr.length ; i++){
+			var posX = parseInt(Math.random()*winWidth-50);
+			var posY = parseInt(Math.random()*winHeight-50);
+			arr[i].pos = parseInt((Math.sqrt(posX*posX+posY*posY)));
+			arr[i].style.left = posX+"px";
+			arr[i].style.top = posY+"px";
+		}		
+		newPosition(arr);
+	}
+	//随机生成颜色
+	function randomColor(arr){
+		for(var i = 0 ;i<arr.length;i++){
+			var col1 = parseInt(Math.random()*256);
+			var col2 = parseInt(Math.random()*256);
+			var col3 = parseInt(Math.random()*256);
+			arr[i].style.background = "rgb("+col1+","+col2+","+col3+")";
+		}
+	}
+	//根据坐标 判断距离 加入 新数组
+	function newPosition(arr){				
+		var canshu;
+		for(var i = 0 ; i < arr.length ;i++){
+			newArr.push(arr[i]);
+		}
+		for(var j = 0 ; j < newArr.length ;j++){					
+			for(var k = 0 ; k < newArr.length-j-1 ; k++){
+				if(newArr[k].pos>newArr[k+1].pos){							
+					canshu = newArr[k+1];
+					newArr[k+1] = newArr[k];
+					newArr[k] = canshu;
+				}
+			}
+		}	
+		readyMove(newArr);
+	}
+	//判断坐标 移动 排列 水平加18 垂直加10
+	function readyMove(arr){
+		for(var i = 0 ; i < arr.length ; i++){
+			arr[i].disX = i*18;			//排列后应在的位置
+			arr[i].disY = i*10;
+			arr[i].eddX = arr[i].offsetLeft-arr[i].disX;//判断应在的位置与当前位置的差
+			arr[i].eddY = arr[i].offsetTop-arr[i].disY;
+		}
+		startMove(arr)
+	}
+	//判断完后 开始运动
+	function startMove(arr){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			for(var i = 0 ; i< arr.length ;i++){
+				if(arr[i].eddX>0){
+					arr[i].style.left = arr[i].offsetLeft-1+"px";
+					arr[i].eddX = arr[i].offsetLeft-arr[i].disX;								
+				}else if(arr[i].eddX<0){
+					arr[i].style.left = arr[i].offsetLeft+1+"px";
+					arr[i].eddX = arr[i].offsetLeft-arr[i].disX;
+				}else{};
+				if(arr[i].eddY>0){
+					arr[i].style.top = arr[i].offsetTop-1+"px";
+					arr[i].eddY = arr[i].offsetTop-arr[i].disY;								
+				}else if(arr[i].eddY<0){
+					arr[i].style.top = arr[i].offsetTop+1+"px";
+					arr[i].eddY = arr[i].offsetTop-arr[i].disY;
+				}else{}
+			}					
+		},10)
+		flag =false
+	}
+</script>
