@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好多视频的title抖动</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<style>
+		@keyframes shake {
+        10%,90% {
+          transform: translate3d(-1px,0,0) rotate(5deg);
+        }
+
+        20%,80% {
+          transform: translate3d(2px,0,0);
+        }
+
+        30%,50%,70% {
+          transform: translate3d(-2px,0,0) rotate(-5deg);
+        }
+
+        40%,60% {
+          transform: translate3d(2px,0,0);
+        }
+      }
+      .c > span{
+      	display: inline-block;
+      }
+			span:hover {
+      	animation: shake 1000ms ease-in-out 0s 1 normal none running;
+			}
+	</style>
+</head>
+<body>
+	<h1>好多视频的title抖动</h1>
+	<div class="c">
+		<span>好</span>
+		<span>多</span>
+		<span>视</span>
+		<span>频</span>
+	</div>
+</body>
+</html>
